@@ -7,7 +7,7 @@ dbsWithField
 ----------------------------------------------------------------
  Get a list of databases that have field on any table with a given name.
 
-### VARCHAR(1000) dbsWithField(<fieldName> CHAR(255))
+### VARCHAR(1000) dbsWithField(fieldName CHAR(255))
 
     select dbsWithField('product_id');
     +-------------------------------------------------------------+
@@ -20,7 +20,7 @@ tablesWithField
 ------------------------------------------------------------------------------------------
  Get a list of talbes in a given database that have a field with a given name.
 
-### VARCHAR(1000) tablesWithField(<fieldName> CHAR(255), <dbName> CHAR(255))
+### VARCHAR(1000) tablesWithField(fieldName CHAR(255), dbName CHAR(255))
 
 
     select tablesWithField('product_id', 'trophies');
@@ -34,7 +34,7 @@ fieldExists
 ---------------------------------------------------------------------------------------------------
  Search for existence of a given field on a given table in a given database.
 
-### BOOLEAN fieldExists(<tableName> CHAR(255), <fieldName> CHAR(255), <dbName> CHAR(255))
+### BOOLEAN fieldExists(tableName CHAR(255), fieldName CHAR(255), dbName CHAR(255))
 
     select fieldExists('coupon_product', 'product_id', 'trophies');
     +--------------------------------------------------------+
