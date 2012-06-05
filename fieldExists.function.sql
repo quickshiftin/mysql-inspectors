@@ -3,11 +3,11 @@
 -- ----------------------------------------------------------------------
 delimiter //
 DROP FUNCTION IF EXISTS `fieldExists` //
-CREATE FUNCTION `fieldExists`(tableName CHAR(255), columnName CHAR(255), dbName CHAR(255))
+CREATE FUNCTION `fieldExists`(columnName CHAR(255), tableName CHAR(255), dbName CHAR(255))
   RETURNS BOOLEAN
 BEGIN
   DECLARE bExists BOOLEAN;
-  CALL _fieldExists(bExists, tableName, columnName, dbName);
+  CALL _fieldExists(bExists, columnName, tableName, dbName);
   RETURN bExists;
 END //
 delimiter ;

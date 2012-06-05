@@ -34,11 +34,11 @@ fieldExists
 ---------------------------------------------------------------------------------------------------
  Search for existence of a given field on a given table in a given database.
 
-### BOOLEAN fieldExists(tableName CHAR(255), fieldName CHAR(255), dbName CHAR(255))
+### BOOLEAN fieldExists(fieldName CHAR(255), tableName CHAR(255), dbName CHAR(255))
 
-    select fieldExists('coupon_product', 'product_id', 'trophies');
+    select fieldExists('product_id', 'coupon_product', 'trophies');
     +--------------------------------------------------------+
-    | fieldExists('coupon_product', 'product_id', 'trohies') |
+    | fieldExists('product_id', 'coupon_product', 'trohies') |
     +--------------------------------------------------------+
     |                                                      1 |
     +--------------------------------------------------------+

@@ -5,9 +5,9 @@
 delimiter //
 DROP PROCEDURE IF EXISTS `_tablesWithField` //
 CREATE PROCEDURE `_tablesWithField` (
-OUT _tables CHAR(255),  -- list of dbs & tables that have fieldName
-IN fieldName CHAR(255), -- field name to look for in tables
-IN dbName CHAR(255)     -- name of db to scan
+OUT _tables VARCHAR(1000), -- list of dbs & tables that have fieldName
+IN fieldName CHAR(255),    -- field name to look for in tables
+IN dbName CHAR(255)        -- name of db to scan
 ) BEGIN
   SELECT GROUP_CONCAT(c.`TABLE_NAME` SEPARATOR ', ') INTO _tables
   FROM `information_schema`.`COLUMNS` c

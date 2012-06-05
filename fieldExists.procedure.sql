@@ -6,8 +6,8 @@ delimiter //
 DROP PROCEDURE IF EXISTS `_fieldExists` //
 CREATE PROCEDURE `_fieldExists` (
 OUT _exists BOOLEAN,      -- return value
-IN tableName CHAR(255),   -- name of table to look for
 IN columnName CHAR(255),  -- name of column to look for
+IN tableName CHAR(255),   -- name of table to look for
 IN dbName CHAR(255)       -- optional specific db
 ) BEGIN
 -- try current db if none provided
