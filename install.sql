@@ -5,8 +5,8 @@ delimiter //
 -- core procedure which does heavy lifting of query
 DROP PROCEDURE IF EXISTS `_dbsWithField` //
 CREATE PROCEDURE `_dbsWithField` (
-OUT _dbs CHAR(255),    -- list of dbs & tables that have fieldName
-IN fieldName CHAR(255) -- field name to look for in tables
+OUT _dbs TEXT, -- list of dbs & tables that have fieldName
+IN fieldName CHAR(255)  -- field name to look for in tables
 ) BEGIN
   SELECT GROUP_CONCAT(DISTINCT t.`TABLE_SCHEMA` SEPARATOR ', ') INTO _dbs
   FROM `information_schema`.`COLUMNS` c
@@ -24,8 +24,8 @@ delimiter //
 DROP PROCEDURE IF EXISTS `_fieldExists` //
 CREATE PROCEDURE `_fieldExists` (
 OUT _exists BOOLEAN,      -- return value
-IN tableName CHAR(255),   -- name of table to look for
 IN columnName CHAR(255),  -- name of column to look for
+IN tableName CHAR(255),   -- name of table to look for
 IN dbName CHAR(255)       -- optional specific db
 ) BEGIN
 -- try current db if none provided
@@ -55,9 +55,9 @@ delimiter ;
 delimiter //
 DROP PROCEDURE IF EXISTS `_tablesWithField` //
 CREATE PROCEDURE `_tablesWithField` (
-OUT _tables CHAR(255),  -- list of dbs & tables that have fieldName
-IN fieldName CHAR(255), -- field name to look for in tables
-IN dbName CHAR(255)     -- name of db to scan
+OUT _tables TEXT, -- list of dbs & tables that have fieldName
+IN fieldName CHAR(255),    -- field name to look for in tables
+IN dbName CHAR(255)        -- name of db to scan
 ) BEGIN
   SELECT GROUP_CONCAT(c.`TABLE_NAME` SEPARATOR ', ') INTO _tables
   FROM `information_schema`.`COLUMNS` c
@@ -71,9 +71,9 @@ delimiter ;
 delimiter //
 DROP FUNCTION IF EXISTS `dbsWithField` //
 CREATE FUNCTION `dbsWithField`(fieldName CHAR(255))
-	RETURNS VARCHAR(1000)
+	RETURNS TEXT
 BEGIN
-	DECLARE sDbs VARCHAR(1000);
+	DECLARE sDbs TEXT;
 	CALL _dbsWithField(sDbs, fieldName);
 	RETURN sDbs;
 END //
@@ -83,11 +83,11 @@ delimiter ;
 -- ----------------------------------------------------------------------
 delimiter //
 DROP FUNCTION IF EXISTS `fieldExists` //
-CREATE FUNCTION `fieldExists`(tableName CHAR(255), columnName CHAR(255), dbName CHAR(255))
+CREATE FUNCTION `fieldExists`(columnName CHAR(255), tableName CHAR(255), dbName CHAR(255))
   RETURNS BOOLEAN
 BEGIN
   DECLARE bExists BOOLEAN;
-  CALL _fieldExists(bExists, tableName, columnName, dbName);
+  CALL _fieldExists(bExists, columnName, tableName, dbName);
   RETURN bExists;
 END //
 delimiter ;
@@ -97,9 +97,9 @@ delimiter ;
 delimiter //
 DROP FUNCTION IF EXISTS `tablesWithField` //
 CREATE FUNCTION `tablesWithField`(fieldName CHAR(255), dbName CHAR(255))
-  RETURNS VARCHAR(1000)
+  RETURNS TEXT
 BEGIN
-  DECLARE sTables VARCHAR(1000);
+  DECLARE sTables TEXT;
   CALL _tablesWithField(sTables, fieldName, dbName);
   RETURN sTables;
 END //
