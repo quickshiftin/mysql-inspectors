@@ -1,0 +1,28 @@
+--------------------
+NEW METHODS:
+--------------------
+
+tablesWithFieldLike
+- Just lke tablesWithField except uses a LIKE to search for more flexibility
+
+dbsWithFieldLike
+- Same idea as above except for dbsWithField
+
+These all work on a table or a database
+hasForeignKeys
+hasViews
+hasTriggers
+hasStoredProcedures
+hasFunctions
+hasIndexes
+
+Methods to count and find percentages things like
+
+avgRowsPerTable
+
+
+--------------------
+BUGS:
+--------------------
+
+Find out how to cleanup problem with fieldExists
